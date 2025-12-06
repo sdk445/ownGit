@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GIT</title>
+</head>
+
+<body>
+    <h1>My Own GitHub</h1>
+
+    <h2>Create Repository</h2>
+    <form action="/create" method="POST">
+        <input type="text" name="name" placeholder="Repository Name" required>
+        <button type="submit">Create</button>
+    </form>
+
+    <h2>Repositories</h2>
+    <ul>
+        {{range .Repos}}
+        <li>
+            {{.}}
+            <form action="/delete" method="POST" style="display:inline;">
+                <input type="hidden" name="name" value="{{.}}">
+                <button type="submit" onclick="return confirm('Are you sure? This cannot be undone.');">Delete</button>
+            </form>
+        </li>
+        {{else}}
+        <li>No repositories found.</li>
+        {{end}}
+    </ul>
+</body>
+
+</html>
